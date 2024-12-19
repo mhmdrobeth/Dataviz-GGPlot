@@ -1,23 +1,15 @@
-My Document
+Untitled
 ================
-Deden Istiawan-Institut Teknologi Statistika dan Bisnis Muhammadiyah
-2024-12-19
 
-<style>
-body{
-text-align: justify}
-</style>
+## GitHub Documents
 
-# R Markdown
+This is an R Markdown format used for publishing markdown documents to
+GitHub. When you click the **Knit** button all R code chunks are run and
+a markdown file (.md) suitable for publishing to GitHub is generated.
 
-This is an R Markdown document. Markdown is a simple formatting syntax
-for authoring HTML, PDF, and MS Word documents (A. T. de Carvalho,
-Lechevallier, and Melo 2012). For more details on using R Markdown see
-<http://rmarkdown.rstudio.com>.
+## Including Code
 
-When you click the **Knit** button a document will be generated that
-includes both content as well as the output of any embedded R code
-chunks within the document. You can embed an R code chunk like this:
+You can include R code in the document as follows:
 
 ``` r
 summary(cars)
@@ -39,18 +31,3 @@ You can also embed plots, for example:
 
 Note that the `echo = FALSE` parameter was added to the code chunk to
 prevent printing of the R code that generated the plot.
-
-# Referensi
-
-<div id="refs" class="references csl-bib-body hanging-indent">
-
-<div id="ref-deCarvalho2012" class="csl-entry">
-
-A. T. de Carvalho, Francisco de, Yves Lechevallier, and Filipe M. de
-Melo. 2012. “Partitioning Hard Clustering Algorithms Based on Multiple
-Dissimilarity Matrices.” *Pattern Recognition* 45 (1): 447–64.
-<https://doi.org/10.1016/j.patcog.2011.05.016>.
-
-</div>
-
-</div>
