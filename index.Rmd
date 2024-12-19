@@ -1,5 +1,5 @@
 ---
-title: "Belajar Data Visualization Mengggunakan RStudio"
+title: "Data Visualization Mengggunakan RStudio"
 author: "Muhammad Robeth Suprayitno-Institut Teknologi Statistika dan Bisnis Muhammadiyah"
 date: "`r Sys.Date()`"
 output: 
@@ -32,7 +32,6 @@ When you click the **Knit** button a document will be generated that includes bo
 ```{r}
 print ("Hello Guys")
 ```
-
 
 ```{r cars}
 summary(cars)
