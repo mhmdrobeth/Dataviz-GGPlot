@@ -1,5 +1,5 @@
 ---
-title: "Data Visualization Mengggunakan RStudio"
+title: "Data Visualization Dengan GGPLOT2"
 author: "Muhammad Robeth Suprayitno-Institut Teknologi Statistika dan Bisnis Muhammadiyah"
 date: "`r Sys.Date()`"
 output: 
@@ -24,27 +24,122 @@ text-align: justify}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# R Markdown
+# Pengantar GGPLOT2
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents [@deCarvalho2012]. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Ggplot2 adalah salah satu pustaka visualisasi data yang paling populer dalam ekosistem R. Dikembangkan oleh Hadley Wickham, pustaka ini menggunakan konsep grammar of graphics, yang memungkinkan pengguna untuk membuat visualisasi data yang kompleks dengan cara yang terstruktur dan fleksibel. ggplot2 dirancang untuk mempermudah proses eksplorasi data melalui grafik yang informatif, estetis, dan konsisten.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Dalam ggplot2, visualisasi dibangun secara bertahap menggunakan lapisan-lapisan (layers), yang mencakup data, estetika (seperti warna, ukuran, atau bentuk), dan geometri (jenis grafik seperti garis, titik, atau batang). Pendekatan ini memberikan keleluasaan kepada pengguna untuk menyesuaikan setiap elemen grafik sesuai kebutuhan. Selain itu, ggplot2 mendukung berbagai jenis data dan kompatibel dengan pustaka R lainnya, seperti dplyr dan tidyr, yang memperkuat kemampuannya dalam analisis data.
+
+Dengan menguasai ggplot2, pengguna dapat menyampaikan informasi yang kompleks melalui visualisasi yang mudah dipahami. Kemampuan ini sangat penting dalam konteks analisis data modern, di mana pengambilan keputusan sering kali bergantung pada pemahaman yang cepat dan akurat terhadap pola, tren, dan anomali dalam data. Oleh karena itu, ggplot2 menjadi alat yang esensial bagi peneliti, analis, dan profesional yang bekerja dengan data.
+
+# Introduction
+
+Berikut adalah pengantar dan materi singkat mengenai ggplot2 yang mencakup pembuatan data frame, pengaturan warna yang berbeda, dan visualisasi data dengan lizard sebagai contoh:
+
+Introduction ggplot2
+ggplot2 adalah pustaka visualisasi data dalam bahasa pemrograman R yang menawarkan fleksibilitas dan struktur dalam membuat berbagai jenis grafik. ggplot2 memungkinkan pengguna untuk membuat visualisasi data yang menarik secara estetis, informatif, dan dapat disesuaikan sesuai kebutuhan. Dalam panduan ini, kita akan membahas langkah-langkah dasar untuk menggunakan ggplot2, yaitu:
+
+1. Membuat data frame sebagai dasar untuk grafik.
+2. Menyesuaikan warna untuk memperjelas perbedaan antar kategori.
+3. Menampilkan data dengan pendekatan visual menggunakan contoh data "lizard".
+
+## 1.1 Struktur Dasar Dasar GGPLOT2
+
+Struktur utama dalam ggplot2 terdiri dari beberapa komponen berikut:
+
+1. Data = Data frame yang digunakan sebagai sumber informasi.
+2. Aesthetic Mapping (aes) = Pemetaan variabel data ke elemen visual, seperti sumbu x, sumbu y, warna, ukuran, atau bentuk.
+3. Geometries (geom) = Jenis grafik yang akan ditampilkan, seperti grafik batang, garis, atau titik.
+4. Faceting = Membagi grafik ke dalam beberapa subgrafik berdasarkan kategori tertentu.
+5. Themes = Menyesuaikan tampilan estetika grafik, seperti font, warna latar, atau garis kisi.
+
+Berikut di bawah ini adalah contoh membuat data frame dan membuat plot titik pada grafik :
+
 ```{r}
-print ("Hello Guys")
+# Muat library ggplot2
+library(ggplot2)
+# Buat data frame contoh
+data <- data.frame(x = rnorm(100), y = rnorm(100))
+ 
+# Buat plot titik
+ggplot(data, aes(x = x, y = y))+
+geom_point()+
+labs(tittle = "Plot Titik", x = "Sumbu X", y = "Sumbu Y")+
+theme_linedraw()
+
 ```
 
-```{r cars}
-summary(cars)
+
+
+## 1.2 Menambahkan Warna Pada Grafik dan Titik
+
+Pemetaan warna berdasarkan kategori dapat dilakukan untuk memperjelas perbedaan antar kelompok.
+
+Dalam contoh ini, warna mewakili setiap kategori huruf, sehingga pola distribusi data dapat lebih mudah diamati.
+
+```{r}
+# Muat library ggplot2
+library(ggplot2)
+
+# Buat data frame contoh
+data <- data.frame(x = rnorm(100), y = rnorm(100), grup = sample(c("A", "B", "C", "D"), 100, replace = TRUE))
+
+# Buat plot titik dengan faceting dan warna berbeda untuk setiap grup
+ggplot(data, aes(x = x, y = y, color = grup)) +
+  geom_point()+
+  facet_wrap(~ grup)+ 
+  scale_color_manual(values = c("A" = "blue", "B" = "red", "C" = "yellow", "D" = "Black"))+ # Menentukan warna untuk grup A, B, C dan D
+  theme_dark()
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+
+## 1.3 Read Data
+
+### A. Membaca Data dari File CSV
+
+CSV (Comma-Separated Values) adalah format data yang paling umum digunakan. Berikut beberapa cara membaca file CSV. Menggunakan read.csv (Fungsi Bawaan R)
+
+
+Membaca file CSV =
+data_csv <- read.csv("data.csv")
+
+Melihat beberapa baris pertama =
+head(data_csv)
+
+
+### B. Membaca Data dari File Excel
+
+Untuk membaca data dari file Excel, gunakan pustaka seperti readxl atau openxlsx. 
+
+Menggunakan Pustaka readxl =
+library(readxl)
+
+Membaca sheet pertama dari file Excel =
+data_excel <- read_excel("data.xlsx")
+
+Membaca sheet tertentu =
+data_excel_sheet2 <- read_excel("data.xlsx", sheet = 2)
+
+Melihat beberapa baris pertama =
+head(data_excel)
+
+
+## 1.4 View Lizard
+
+Pada bagian ini, saya akan memberikan contoh cara membaca data dari sebuah file CSV. File yang digunakan dalam contoh ini bernama lizard.csv. Sebelum memulai, pastikan file tersebut telah diunduh atau tersedia di perangkat Anda. Setelah file diunduh, salin file tersebut ke dalam folder kerja yang telah Anda buat untuk proyek ggplot2. Letakkan file tersebut di dalam folder tersebut untuk memudahkan akses. Setelah itu, tambahkan blok kode (chunk) dalam skrip R untuk membaca data tersebut. Contoh implementasi dapat dilihat pada kode berikut
+
+
+```{r}
+lizard <- read.csv("lizards.csv")
+View(lizard)
+```
+```{r}
+# Buat plot titik
+ggplot(lizard, aes(x = total_length, y = weight))+
+geom_point()+
+labs(tittle = "Plot Titik", x = "total_length", y = "weight")+
+theme_light()
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-# Referensi
