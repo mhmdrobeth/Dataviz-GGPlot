@@ -137,9 +137,56 @@ View(lizard)
 ```
 ```{r}
 # Buat plot titik
-ggplot(lizard, aes(x = total_length, y = weight))+
-geom_point()+
-labs(tittle = "Plot Titik", x = "total_length", y = "weight")+
-theme_light()
+library(ggplot2)
+ggplot(lizard, aes(x = total_length, y = weight)) +
+  geom_point() +
+  labs(title = "Plot Titik", x = "total_length", y = "weight") +
+  theme_light()
+```
+
+```{r}
+library(ggplot2)
+ggplot(lizard, aes (x=total_length, y=common_name))+
+  geom_jitter()
+```
+```{r}
+library(ggplot2)
+ggplot(lizard, aes(x=total_length))+
+  geom_histogram()+
+theme_linedraw()
+```
+
+```{r}
+library(ggplot2)
+ggplot(lizard, aes (y=common_name))+
+  geom_bar()
+```
+
+```{r}
+library(ggplot2)
+ggplot(lizard, aes(x=weight))+
+  geom_histogram(color = "yellow", fill = "red", size = 1.5, linetype = "dotted")+
+  theme_linedraw()+
+  labs(title = "Dinding Histogram Lizard", x="weight", y="count")
+```
+
+```{r}
+# Buat plot titik
+library(ggplot2)
+ggplot(lizard, aes(x = total_length, y = weight)) +
+  geom_point(color = "blue", size = 10, shape = 11) +
+  labs(title = "Plot Titik Tabel Warna Baru", x = "total_length", y = "weight") +
+  theme_linedraw()
+```
+
+```{r}
+# Buat plot titik
+library(ggplot2)
+ggplot(lizard, aes(x = total_length, y = weight, color = common_name)) +
+  geom_point(size = 3, shape = 18, fill = "red") +  # Anda bisa mengatur ukuran dan bentuk titik
+  labs(title = "Plot Titik Tabel Warna Berdasarkan Common Name", 
+       x = "total_length", 
+       y = "weight") +
+  theme_linedraw()
 ```
 
