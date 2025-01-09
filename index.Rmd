@@ -223,7 +223,7 @@ plot <- plot_ly(data = lizard,
          xaxis = list(title = "Income"),
          yaxis = list(title = "Life Expectancy"),
          showlegend = TRUE) %>%
-  animation_opts(frame = 100, redraw = TRUE, mode = "immediate") %>%  # Mode immediate untuk animasi yang lebih halus
+  animation_opts(frame = 500, redraw = TRUE, mode = "immediate") %>%  # Durasi frame diatur menjadi 500 ms
   animation_slider(currentvalue = list(prefix = "Year: "))  # Menambahkan slider untuk tahun
 
 # Tampilkan plot
