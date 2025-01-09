@@ -189,4 +189,45 @@ ggplot(lizard, aes(x = total_length, y = weight, color = common_name)) +
        y = "weight") +
   theme_linedraw()
 ```
+```{r}
+# Pastikan untuk memuat paket yang diperlukan
+library(plotly)
+library(dplyr)
+
+# Membuat data frame dengan lebih banyak titik
+set.seed(123)  # Untuk reproduktifitas
+n <- 100  # Jumlah titik
+
+lizard <- data.frame(
+  common_name = paste("Lizard", 1:n),
+  weight = runif(n, 1, 2),  # Berat acak antara 1 dan 2
+  life_expectancy = runif(n, 3, 10),  # Harapan hidup acak antara 3 dan 10
+  continent = sample(c("Asia", "Africa", "Europe", "America"), n, replace = TRUE),
+  income = runif(n, 3000, 10000),  # Pendapatan acak antara 3000 dan 10000
+  year = rep(2000:2005, length.out = n)  # Tahun dari 2000 hingga 2005
+)
+
+# Buat plot interaktif dengan plotly
+plot <- plot_ly(data = lizard, 
+                 x = ~income, 
+                 y = ~life_expectancy, 
+                 color = ~continent, 
+                 colors = "Set3",  # Menggunakan palet warna yang lebih beragam
+                 type = 'scatter', 
+                 mode = 'markers', 
+                 marker = list(size = 10, symbol = 'circle', opacity = 0.7),
+                 frame = ~year,  # Menambahkan frame untuk animasi
+                 text = ~common_name, 
+                 hoverinfo = "text") %>%
+  layout(title = "Hubungan antara Income dan Life Expectancy di Berbagai Benua",
+         xaxis = list(title = "Income"),
+         yaxis = list(title = "Life Expectancy"),
+         showlegend = TRUE) %>%
+  animation_opts(frame = 100, redraw = TRUE, mode = "immediate") %>%  # Mode immediate untuk animasi yang lebih halus
+  animation_slider(currentvalue = list(prefix = "Year: "))  # Menambahkan slider untuk tahun
+
+# Tampilkan plot
+plot
+```
+
 
