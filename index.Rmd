@@ -193,6 +193,7 @@ ggplot(lizard, aes(x = total_length, y = weight, color = common_name)) +
 # Pastikan untuk memuat paket yang diperlukan
 library(plotly)
 library(dplyr)
+library(ggplot2)
 
 # Membuat data frame dengan lebih banyak titik
 set.seed(123)  # Untuk reproduktifitas
